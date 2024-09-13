@@ -5,4 +5,4 @@ const {getContacts,createContact,getContact,updateContact,deleteContact}=require
 router.route("/").get(getContacts).post(createContact);
 router.route("/:id").get(getContact).put(updateContact).delete(deleteContact);
 
-module.exports=router;
+ module.exports=router;

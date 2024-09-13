@@ -7,7 +7,7 @@ const bcrypt=require("bcryptjs");
 // @access public
 const registerUser = asyncHandler(async(req,res)=>{
     let {username,email,password}=req.body;
-    if(!username || !email || !password){
+     if(!username || !email || !password){
         res.status(400);
         throw new Error("All field are mandatory");
     }

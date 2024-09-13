@@ -6,4 +6,4 @@ const contactSchema=mongoose.Schema({
     phone:{type:String,required:[true,"please add the contact number"]},
 },{timestamps:true});
 
-module.exports=mongoose.model("Contact",contactSchema);
+ module.exports=mongoose.model("Contact",contactSchema);

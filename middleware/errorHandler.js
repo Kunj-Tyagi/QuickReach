@@ -9,7 +9,7 @@ const errorhandler=(err,req,res,next)=>{
                 message:err.message,
                 stackTrace:err.stack,
             });
-            break;
+             break;
         case constants.NOT_FOUND:
             res.json({
                 title:"Not Found",

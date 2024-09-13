@@ -25,7 +25,7 @@ const createContact = asyncHandler(async (req, res) => {
     email,
     phone,
   });
-  res.status(201).json(contact);
+   res.status(201).json(contact);
 });
 
 // @desc get contact for particular id

@@ -6,4 +6,4 @@ const userSchema=mongoose.Schema({
     password:{type:String,required:[true,"please add the user password"]},
 },{timestamps:true});
 
-module.exports=mongoose.model("User",userSchema);
+ module.exports=mongoose.model("User",userSchema);
