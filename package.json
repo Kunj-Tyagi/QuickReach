@@ -1,0 +1,19 @@
+{
+  "name": "mycontacts-backend-api",
+  "version": "1.0.0",
+  "description": "This is express project for mycontact-backend-api",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "\"Kunj Tyagi\"",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "express-async-handler": "^1.2.0",
+    "mongodb": "^6.8.1",
+    "mongoose": "^8.6.2"
+  }
+}
