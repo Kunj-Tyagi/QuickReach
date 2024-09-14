@@ -4,15 +4,15 @@ const Contact = require("../models/contactModels");
 
 // @desc Get all contacts
 // @routes GET /api/contacts
-// @access public
+// @access Private
 const getContacts = asyncHandler(async (req, res) => {
-  const contacts = await Contact.find();
+  const contacts = await Contact.find({user_id: req.user.id });
   res.status(200).json(contacts);
 });
 
 // @desc Create new contacts
 // @routes Post /api/contacts
-// @access public
+// @access Private
 // 201-resource created
 const createContact = asyncHandler(async (req, res) => {
   console.log(req.body);
@@ -25,13 +25,14 @@ const createContact = asyncHandler(async (req, res) => {
     name,
     email,
     phone,
+    user_id:req.user.id,
   });
    res.status(201).json(contact);
 });
 
 // @desc get contact for particular id
 // @routes GET /api/contacts/:id
-// @access public
+// @access Private
 const getContact = asyncHandler(async (req, res) => {
   const contact = await Contact.findById(req.params.id);
   if (!contact) {
@@ -43,12 +44,17 @@ const getContact = asyncHandler(async (req, res) => {
 
 // @desc Update contact
 // @routes PUT /api/contacts/:id
-// @access public
+// @access Private
 const updateContact = asyncHandler(async (req, res) => {
   const contact = await Contact.findById(req.params.id);
   if (!contact) {
     res.status(404);
     throw new Error("Contact not found");
+  }
+
+  if(contact.user._id.toString()!==req.user.id){
+    res.status(403);
+    throw new Error("User don't have permission to update other user contacts");
   }
 
   const updatedContact=await Contact.findByIdAndUpdate(
@@ -60,15 +66,20 @@ const updateContact = asyncHandler(async (req, res) => {
 
 // @desc Delete contacts
 // @routes DELETE /api/contacts/:id
-// @access public
+// @access Private
 const deleteContact = asyncHandler(async(req, res) => {
   const contact = await Contact.findById(req.params.id);
   if (!contact) {
     res.status(404);
     throw new Error("Contact not found");
   }
+  
+  if(contact.user._id.toString()!==req.user.id){
+    res.status(403);
+    throw new Error("User don't have permission to update other user contacts");
+  }
 
-  await contact.deleteOne();
+  await contact.deleteOne({_id:req.params.id});
   res.status(200).json(contact);
 });
 
