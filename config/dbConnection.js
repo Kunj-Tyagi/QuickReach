@@ -9,5 +9,4 @@ const connectdb=async()=>{
         Process.exit(1);
     }
 }
-
- module.exports=connectdb;
+module.exports=connectdb;
